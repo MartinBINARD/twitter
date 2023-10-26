@@ -14,16 +14,19 @@
 - express
 - morgan
 - pug
+- mongoose
 
 ## :computer: Use
+
+- Create a database named `twitter` with mongoDB in cluster collections
+- Then specify port with PORT varaible in .env.example then rename it in .env or leave the port 3000 by default
+- Add user database name and password in .env
 
 - Install packages
 
 ```
 npm i
 ```
-
-- Then specify port with PORT varaible in .env.example then rename it in .env or leave the port 3000 by default
 
 - Run app
 
