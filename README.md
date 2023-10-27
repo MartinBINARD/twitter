@@ -28,8 +28,14 @@
 npm i
 ```
 
-- Run app
+- Run app in development :construction:
 
 ```
 npm start
+```
+
+- Run app in production :rocket:
+
+```
+npm run start:prod
 ```
