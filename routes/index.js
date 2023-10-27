@@ -1,19 +1,11 @@
 const router = require("express").Router();
-const api = require("./api");
-const Tweet = require("../database/models/tweet.model");
+const tweets = require("./tweets");
 
-// Connect api before render pages in order to interact with
-router.use("/api", api);
-
-router.get("/tweet/new", (req, res) => {
-  res.render("tweets/tweet-form");
-});
-
+// Connect  directly to tweets router to interact with
+router.use("/tweets", tweets);
+// redirect default routes to tweet
 router.get("/", (req, res) => {
-  // exec nodejs child_process Transform query result into promise
-  Tweet.find({})
-    .exec()
-    .then((tweets) => res.render("tweets/tweet-list", { tweets }));
+  res.redirect("/tweets");
 });
 
 module.exports = router;
