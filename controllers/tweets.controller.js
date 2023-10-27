@@ -1,9 +1,9 @@
-const Tweet = require("../database/models/tweet.model");
+const { getTweets, createTweet } = require("../queries/tweets.queries");
 
 exports.tweetList = async (req, res, next) => {
   try {
     // exec nodejs child_process Transform query result into promise
-    const tweets = await Tweet.find({}).exec();
+    const tweets = await getTweets();
     res.render("tweets/tweet-list", { tweets });
   } catch (error) {
     next(e);
@@ -18,9 +18,8 @@ exports.tweetCreate = async (req, res, next) => {
   try {
     const body = req.body;
     // import Mongoose models to transform user form into Mongoose document
-    const newTweet = new Tweet(body);
-    await newTweet.save();
-    res.redirect("/");
+    await createTweet(body);
+    res.redirect("/tweets");
   } catch (e) {
     const errors = Object.keys(e.errors).map((key) => e.errors[key].message);
     res.status(400).render("tweets/tweet-form", { errors });
