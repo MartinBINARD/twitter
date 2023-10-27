@@ -11,3 +11,7 @@ exports.createTweet = (tweet) => {
 
   return newTweet.save();
 };
+
+exports.deleteTweet = (tweetId) => {
+  return Tweet.findByIdAndDelete(tweetId).exec();
+};

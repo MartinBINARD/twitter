@@ -30,17 +30,15 @@ exports.tweetCreate = async (req, res, next) => {
   }
 };
 
+/* Render only the tweet list after delete component
+    to avoid rendering the entire page */
 exports.tweetDelete = async (req, res, next) => {
   try {
     const tweetId = req.params.tweetId;
-
     await deleteTweet(tweetId);
-
-    /* Render only the tweet list after delete component
-    to avoid rendering the entire page */
     const tweets = await getTweets();
     res.render("tweets/tweet-list", { tweets });
-  } catch (error) {
+  } catch (e) {
     next(e);
   }
 };
