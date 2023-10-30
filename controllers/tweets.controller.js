@@ -3,6 +3,7 @@ const {
   getTweets,
   createTweet,
   deleteTweet,
+  updateTweet,
 } = require("../queries/tweets.queries");
 
 exports.tweetList = async (req, res, next) => {
@@ -55,5 +56,21 @@ exports.tweetEdit = async (req, res, next) => {
     res.render("tweets/tweet-form", { tweet });
   } catch (e) {
     next(e);
+  }
+};
+
+// If succeed : Update tweet then redirect to tweet list
+// In case of error : display tweet and error message
+
+exports.tweetUpdate = async (req, res, next) => {
+  const tweetId = req.params.tweetId;
+  try {
+    const body = req.body;
+    await updateTweet(tweetId, body);
+    res.redirect("/tweets");
+  } catch (e) {
+    const errors = Object.keys(e.errors).map((key) => e.errors[key].message);
+    const tweet = await getTweet(tweetId);
+    res.status(400).render("tweets/tweet-form", { errors, tweet });
   }
 };

@@ -20,7 +20,7 @@ app.use(morgan("short"));
 app.use(express.static(path.join(__dirname, "public")));
 // json method to catch data from verb request
 app.use(express.json());
-// Catch url params during request tiwh extended to pass complex params
+// Catch url params during request with extended to pass complex params
 app.use(express.urlencoded({ extended: true }));
 // Enter point from single file of routess
 app.use(index);

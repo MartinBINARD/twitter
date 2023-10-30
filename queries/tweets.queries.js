@@ -19,3 +19,14 @@ exports.deleteTweet = (tweetId) => {
 exports.getTweet = (tweetId) => {
   return Tweet.findOne({ _id: tweetId }).exec();
 };
+
+/* Modify tweet object + validators entries execution
+is not proceed by default during update */
+
+exports.updateTweet = (tweetId, tweet) => {
+  return Tweet.findByIdAndUpdate(
+    tweetId,
+    { $set: tweet },
+    { runValidators: true }
+  );
+};
