@@ -15,3 +15,7 @@ exports.createTweet = (tweet) => {
 exports.deleteTweet = (tweetId) => {
   return Tweet.findByIdAndDelete(tweetId).exec();
 };
+
+exports.getTweet = (tweetId) => {
+  return Tweet.findOne({ _id: tweetId }).exec();
+};

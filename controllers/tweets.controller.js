@@ -1,4 +1,5 @@
 const {
+  getTweet,
   getTweets,
   createTweet,
   deleteTweet,
@@ -15,7 +16,8 @@ exports.tweetList = async (req, res, next) => {
 };
 
 exports.tweetNew = (req, res, next) => {
-  res.render("tweets/tweet-form");
+  // Create empty tweet object to prevent tweet is not defined
+  res.render("tweets/tweet-form", { tweet: {} });
 };
 
 exports.tweetCreate = async (req, res, next) => {
@@ -38,6 +40,19 @@ exports.tweetDelete = async (req, res, next) => {
     await deleteTweet(tweetId);
     const tweets = await getTweets();
     res.render("tweets/tweet-list", { tweets });
+  } catch (e) {
+    next(e);
+  }
+};
+
+exports.tweetEdit = async (req, res, next) => {
+  try {
+    const tweetId = req.params.tweetId;
+    console.log("tweetId", tweetId);
+    const tweet = await getTweet(tweetId);
+    console.log("tweet", tweet);
+
+    res.render("tweets/tweet-form", { tweet });
   } catch (e) {
     next(e);
   }
