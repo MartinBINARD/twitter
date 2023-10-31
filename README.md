@@ -12,15 +12,20 @@
 
 - node
 - express
+- express-session
 - morgan
 - pug
 - mongoose
+- connect-mongo
+- brcypt
+- passeport
 
 ## :computer: Use
 
 - Create a database named `twitter` with mongoDB in cluster collections
 - Then specify port with PORT varaible in .env.example then rename it in .env or leave the port 3000 by default
 - Add user database name and password in .env
+- Add your own `SESSION_SECRET` and specify `AUTH_AGE` in milliseconds.
 
 - Install packages
 

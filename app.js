@@ -13,6 +13,8 @@ app.set("views", path.join(__dirname, "views"));
 // Pass pug to express view engine to generate pages
 app.set("view engine", "pug");
 
+require("./config/session.config");
+
 /* morgan : middle for terminal logs with short argument who give back this info :
 :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms */
 app.use(morgan("short"));
