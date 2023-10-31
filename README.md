@@ -15,6 +15,7 @@
 - express-session
 - morgan
 - pug
+- bootstrap
 - mongoose
 - connect-mongo
 - brcypt
