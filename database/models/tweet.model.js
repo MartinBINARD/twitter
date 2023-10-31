@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 from "twitter" collection defined in mongoDB interface */
 const schema = mongoose.Schema;
 
+// Each tweet belong to user
+// foreign key Author with ref user model
+
 const tweetSchema = schema({
   content: {
     type: String,
@@ -10,6 +13,7 @@ const tweetSchema = schema({
     minLength: [1, "Too short tweet"],
     required: [true, "Required field"],
   },
+  author: { type: schema.Types.ObjectId, ref: "user", required: true },
 });
 
 const Tweet = mongoose.model("tweet", tweetSchema);

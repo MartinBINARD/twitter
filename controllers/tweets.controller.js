@@ -33,17 +33,15 @@ exports.tweetCreate = async (req, res, next) => {
   try {
     const body = req.body;
     // import Mongoose models to transform user form into Mongoose document
-    await createTweet(body);
+    await createTweet({ ...body, author: req.user._id });
     res.redirect("/tweets");
   } catch (e) {
     const errors = Object.keys(e.errors).map((key) => e.errors[key].message);
-    res
-      .status(400)
-      .render("tweets/tweet-form", {
-        errors,
-        isAuthenticated: req.isAuthenticated(),
-        currentUser: req.user,
-      });
+    res.status(400).render("tweets/tweet-form", {
+      errors,
+      isAuthenticated: req.isAuthenticated(),
+      currentUser: req.user,
+    });
   }
 };
 
@@ -63,10 +61,7 @@ exports.tweetDelete = async (req, res, next) => {
 exports.tweetEdit = async (req, res, next) => {
   try {
     const tweetId = req.params.tweetId;
-    console.log("tweetId", tweetId);
     const tweet = await getTweet(tweetId);
-    console.log("tweet", tweet);
-
     res.render("tweets/tweet-form", {
       tweet,
       isAuthenticated: req.isAuthenticated(),
