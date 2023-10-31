@@ -19,6 +19,7 @@
 - connect-mongo
 - brcypt
 - passeport
+- passeport-local
 
 ## :computer: Use
 
