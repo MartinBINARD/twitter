@@ -13,7 +13,7 @@ exports.createUser = async (user) => {
     });
 
     return newUser.save();
-  } catch (error) {
+  } catch (e) {
     throw e;
   }
 };

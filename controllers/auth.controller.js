@@ -1,7 +1,7 @@
 const passport = require("passport");
 
 exports.signinForm = (req, res, next) => {
-  res.render("auth/signin-form", { errors: null });
+  res.render("auth/auth-form", { errors: null });
 };
 
 exports.signin = (req, res, next) => {
@@ -9,7 +9,7 @@ exports.signin = (req, res, next) => {
     if (err) {
       next(err);
     } else if (!user) {
-      res.render("auth/signin-form", { errors: [info.message] });
+      res.render("auth/auth-form", { errors: [info.message] });
     } else {
       req.login(user, (err) => {
         if (err) {

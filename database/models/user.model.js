@@ -12,7 +12,7 @@ const userSchema = schema({
 });
 
 // hash password during schema creation and before model creation
-userSchema.statics.hasPassword = (password) => {
+userSchema.statics.hashPassword = (password) => {
   return bcrypt.hash(password, parseInt(process.env.BCRYPT_ROUND));
 };
 
