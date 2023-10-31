@@ -1,7 +1,7 @@
 exports.signupForm = (req, res, next) => {
-  res.end();
+  res.render("users/user-form", { errors: null });
 };
 
 exports.signup = (req, res, next) => {
-  res.end();
+  const { email, password, username } = req.body;
 };
