@@ -1,11 +1,29 @@
+const passport = require("passport");
+
 exports.signinForm = (req, res, next) => {
-  res.end();
+  res.render("auth/signin-form", { errors: null });
 };
 
 exports.signin = (req, res, next) => {
-  res.end();
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      next(err);
+    } else if (!user) {
+      res.render("auth/signin-form", { errors: [info.message] });
+    } else {
+      req.login(user, (err) => {
+        if (err) {
+          next(err);
+        } else {
+          res.redirect("/tweets");
+        }
+      });
+    }
+  })(req, res, next);
 };
 
 exports.signout = (req, res, next) => {
-  res.end();
+  res.logout();
+
+  res.redirect("/auth/signin/form");
 };
