@@ -16,6 +16,11 @@ userSchema.statics.hasPassword = (password) => {
   return bcrypt.hash(password, parseInt(process.env.BCRYPT_ROUND));
 };
 
+// Must apply comparePassword on instance model after schema and model creation
+userSchema.methods.comparePassword = function (password) {
+  return bcrypt.compare(password, this.local.password);
+};
+
 const User = mongoose.model("user", userSchema);
 
 module.exports = User;
