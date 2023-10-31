@@ -14,7 +14,11 @@ app.set("views", path.join(__dirname, "views"));
 // Pass pug to express view engine to generate pages
 app.set("view engine", "pug");
 
+// import session with MongoStore
 require("./config/session.config");
+
+// Import passport for session user
+require("./config/passport.config");
 
 /* morgan : middle for terminal logs with short argument who give back this info :
 :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms */

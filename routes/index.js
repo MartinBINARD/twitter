@@ -5,6 +5,7 @@ const users = require("./users.routes");
 // Connect  directly to tweets router to interact with
 router.use("/tweets", tweets);
 router.use("/users", users);
+router.use("/auth", auth);
 // redirect default routes to tweet
 router.get("/", (req, res) => {
   res.redirect("/tweets");
