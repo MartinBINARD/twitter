@@ -6,6 +6,7 @@ const errorHandler = require("errorhandler");
 require("./database");
 
 const app = express();
+exports.app = app;
 const port = process.env.PORT || 3000;
 
 // Connect express server with views folder

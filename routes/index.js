@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const tweets = require("./tweets.routes");
-const user = require("./users.routes");
+const users = require("./users.routes");
 
 // Connect  directly to tweets router to interact with
 router.use("/tweets", tweets);

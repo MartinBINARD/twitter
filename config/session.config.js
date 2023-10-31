@@ -20,7 +20,7 @@ app.use(
       httpOnly: false,
       maxAge: parseInt(process.env.AUTH_AGE),
     },
-    store: new MongoStore.create({
+    store: MongoStore.create({
       clientPromise: clientPromise.then((m) => m.connection.getClient()),
       ttl: parseInt(process.env.AUTH_AGE) / 1000,
     }),
