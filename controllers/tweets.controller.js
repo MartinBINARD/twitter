@@ -4,18 +4,24 @@ const {
   createTweet,
   deleteTweet,
   updateTweet,
+  getCurrentUserTweetsWithFollowing,
 } = require("../queries/tweets.queries");
 
+/*
+  Tweet feed = tweet owend + tweets from user followed
+  The key user is for user followed
+  When watching other user profile,  his tweets list is displayed
+*/
 exports.tweetList = async (req, res, next) => {
   try {
-    // exec nodejs child_process Transform query result into promise
-    const tweets = await getTweets();
+    const tweets = await getCurrentUserTweetsWithFollowing(req.user);
     res.render("tweets/tweet", {
       tweets,
       isAuthenticated: req.isAuthenticated(),
       currentUser: req.user,
+      user: req.user,
     });
-  } catch (error) {
+  } catch (e) {
     next(e);
   }
 };
