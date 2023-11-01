@@ -31,10 +31,17 @@ exports.updateTweet = (tweetId, tweet) => {
   );
 };
 
+/* 
+  By declaring key in user model with ref => populate is available
+  populate allow to get user information reference
+*/
+
 exports.getCurrentUserTweetsWithFollowing = (user) => {
-  return Tweet.find({ author: { $in: [...user.following, user._id] } }).exec();
+  return Tweet.find({ author: { $in: [...user.following, user._id] } })
+    .populate("author")
+    .exec();
 };
 
 exports.getUserTweetsFormAuthorId = (authorId) => {
-  return Tweet.find({ author: authorId }).exec();
+  return Tweet.find({ author: authorId }).populate("author").exec();
 };
