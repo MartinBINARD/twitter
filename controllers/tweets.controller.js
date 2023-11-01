@@ -1,6 +1,5 @@
 const {
   getTweet,
-  getTweets,
   createTweet,
   deleteTweet,
   updateTweet,
@@ -11,6 +10,8 @@ const {
   Tweet feed = tweet owend + tweets from user followed
   The key user is for user followed
   When watching other user profile,  his tweets list is displayed
+  Render Edit & Delete button if user own the tweet with currentUser
+  and editable conditions
 */
 exports.tweetList = async (req, res, next) => {
   try {
@@ -20,6 +21,7 @@ exports.tweetList = async (req, res, next) => {
       isAuthenticated: req.isAuthenticated(),
       currentUser: req.user,
       user: req.user,
+      editable: true,
     });
   } catch (e) {
     next(e);
@@ -51,14 +53,20 @@ exports.tweetCreate = async (req, res, next) => {
   }
 };
 
-/* Render only the tweet list after delete component
-    to avoid rendering the entire page */
+/*
+  Render only the tweet list after delete component
+  to avoid rendering the entire page 
+*/
 exports.tweetDelete = async (req, res, next) => {
   try {
     const tweetId = req.params.tweetId;
     await deleteTweet(tweetId);
-    const tweets = await getTweets();
-    res.render("tweets/tweet-list", { tweets });
+    const tweets = await getCurrentUserTweetsWithFollowing(req.user);
+    res.render("tweets/tweet-list", {
+      tweets,
+      currentUser: req.user,
+      editable: true,
+    });
   } catch (e) {
     next(e);
   }

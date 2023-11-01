@@ -33,7 +33,7 @@ exports.updateTweet = (tweetId, tweet) => {
 
 /* 
   By declaring key in user model with ref => populate is available
-  populate allow to get user information reference
+  populate allow to get user object with an objectId
 */
 
 exports.getCurrentUserTweetsWithFollowing = (user) => {
