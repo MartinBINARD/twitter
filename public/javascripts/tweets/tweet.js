@@ -3,8 +3,9 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // use bind function to initialise listnerners during partial rendering
+
 function bindTweet() {
-  const elements = document.querySelectorAll(".btn-danger");
+  const elements = document.querySelectorAll(".fa-minus-circle");
   const tweetContainer = document.querySelector("#tweet-list-container");
 
   elements.forEach((e) => {

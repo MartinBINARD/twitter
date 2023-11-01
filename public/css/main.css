@@ -42,3 +42,7 @@ body {
 .b1 {
   border: 1px solid green;
 }
+
+.pointer-cursor {
+  cursor: pointer;
+}
