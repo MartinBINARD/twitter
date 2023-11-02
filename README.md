@@ -21,12 +21,15 @@
 - brcypt
 - passeport
 - passeport-local
+- multer
+- errorhandler
+- dotenv
 
 ## :computer: Use
 
-- Create a database named `twitter` with mongoDB in cluster collections
+- Rename .env.example file in .env
+- Replace `DB` variable with mongoDB database link and replace user database name and password
 - Then specify port with `PORT` varaible in .env.example then rename it in .env or leave the port 3000 by default
-- Add user database name and password in .env with `USER_DB` and `PASSWORD_DB`
 - Add your own `SESSION_SECRET` and specify `AUTH_AGE` in milliseconds.
 - Write number of round to for password hash with brcypt in `BCRYPT_ROUND`
 
