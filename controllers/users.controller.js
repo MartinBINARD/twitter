@@ -1,11 +1,15 @@
 const {
   createUser,
   findUserPerUsername,
-  getUserTweetsFormAuthorId,
   searchUsersPerUsername,
+  addUserIdToCurrentUserFollowing,
+  findUserPerId,
+  removeUserIdToCurrentUserFollowing,
 } = require("../queries/users.queries");
+const { getUserTweetsFromAuthorId } = require("../queries/tweets.queries");
 const path = require("path");
 const multer = require("multer");
+const { log } = require("console");
 
 /* Set image path storage and add date in ms to file name */
 const upload = multer({
@@ -34,8 +38,7 @@ exports.userProfile = async (req, res, next) => {
   try {
     const username = req.params.username;
     const user = await findUserPerUsername(username);
-    console.log("user profile", user);
-    const tweets = await getUserTweetsFormAuthorId(user._id);
+    const tweets = await getUserTweetsFromAuthorId(user._id);
     res.render("tweets/tweet", {
       tweets,
       isAuthenticated: req.isAuthenticated(),
