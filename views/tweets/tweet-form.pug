@@ -2,17 +2,15 @@ extends ../layout
 
 block content
     div(class="d-flex flex-row content mx-auto")
-        div(class="profile-container")
-            include ../includes/profile
         div(class="flex-fill")
             form(class="card" method="post" action=tweet && tweet._id ? `/tweets/update/${tweet._id}` : "/tweets")
                 div(class="card-header") Write a tweet
-                    div(class="card-body")
-                        div(class="mb-3")
-                            textarea(class="form-control" name="content" placeholder="what is happening")= tweet.content
-                        if errors
-                            ul(class="my-2")
-                                each error in errors
-                                    li(class="text-danger")= error
-                        div(class="W-100")
-                            input(type="submit" value="Send" class="btn btn-primary ms-auto d-block")
+                div(class="card-body")
+                    div(class="mb-3")
+                        textarea(class="form-control" name="content" placeholder="what is happening")= tweet.content
+                    if errors
+                        ul(class="my-2")
+                            each error in errors
+                                li(class="text-danger")= error
+                    div(class="W-100")
+                        input(type="submit" value="Send" class="btn btn-primary ms-auto d-block")
