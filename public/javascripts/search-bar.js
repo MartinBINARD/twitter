@@ -28,7 +28,9 @@ window.addEventListener("DOMContentLoaded", () => {
     ref = setTimeout(() => {
       axios
         .get("/users?search=" + value)
-        .then((res) => console.log(res))
+        .then((res) => {
+          menuContainer.innerHTML = res.data;
+        })
         .catch((e) => console.log(e));
     }, 2000);
   });
