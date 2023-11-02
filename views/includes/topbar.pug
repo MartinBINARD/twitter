@@ -1,17 +1,25 @@
-nav(class="navbar navbar-expand-lg navbar-light bg-white")
+nav(class="navbar navbar-expand-lg navbar-light bg-white px-3")
   a(class="navbar-brand" href="/tweets")
     img(width="30" height="30" src="/images/twitter.png" )
   button(class="navbar-toggler")
     span(class="navbar-toggler-icon")
   div(class="collapse navbar-collapse")
-    ul(class="navbar-nav ms-auto")
-      if isAuthenticated 
+    if isAuthenticated
+      form
+        input(type="text" class="form-control mr-2" placeholder="search" id="search-input")
+        div(id="search-menu-container")
+          div(class="search-menu d-flex flex-column")
+            div(class="d-flex flex-row align-items-center search-menu-item pointer-cursor")
+              img(with ="30" height="30" class="p-2" src="/images/default-avatar.svg")
+              span username
+      ul(class="navbar-nav ms-auto")
         li(class="nav-item active")
           a(class="btn btn-primary btn-tweet me-3" href="/tweets/new") Tweet
         li(class="nav-item active")
           a(class="nav-link" href="/auth/signout") Logout
-      else
-        li(class="nav-item")
-          a(class="nav-link" href="/auth/signin/form") Login
-        li(class="nav-item")
-          a(class="nav-link" href="/users/signup/form") Register
+
+    else
+      li(class="nav-item")
+        a(class="nav-link" href="/auth/signin/form") Login
+      li(class="nav-item")
+        a(class="nav-link" href="/users/signup/form") Register
