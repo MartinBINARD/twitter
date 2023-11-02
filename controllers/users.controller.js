@@ -2,6 +2,7 @@ const {
   createUser,
   findUserPerUsername,
   getUserTweetsFormAuthorId,
+  searchUsersPerUsername,
 } = require("../queries/users.queries");
 const path = require("path");
 const multer = require("multer");
@@ -17,6 +18,17 @@ const upload = multer({
     },
   }),
 });
+
+exports.userList = async (req, res, next) => {
+  try {
+    const search = req.query.search;
+    const users = await searchUsersPerUsername(search);
+
+    res.render("includes/search-menu", { users });
+  } catch (e) {
+    next(e);
+  }
+};
 
 exports.userProfile = async (req, res, next) => {
   try {

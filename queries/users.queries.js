@@ -33,3 +33,10 @@ exports.findUserPerUsername = (username) => {
 exports.getUserTweetsFormAuthorId = (authorId) => {
   return Tweet.find({ author: authorId }).populate("author").exec();
 };
+
+exports.searchUsersPerUsername = (search) => {
+  const regExp = `^${search}`;
+  const reg = new RegExp(regExp);
+
+  return User.find({ username: { $regex: reg } }).exec();
+};
